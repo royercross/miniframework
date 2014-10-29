@@ -13,7 +13,6 @@ class BaseModel{
         if($data){
             $this->setData($data);
         }
-
 	}
 
 	public function setData($data){

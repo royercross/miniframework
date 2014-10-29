@@ -29,9 +29,9 @@ function getPublic(){
 function view($template, $vars = array())
 {
 	extract($vars);
-	header("Location: ")	
 	require ROOT."/views/".$template.".blade.php";
 }
+
 
 
 
