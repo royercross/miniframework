@@ -1,5 +1,8 @@
 <?php include(ROOT . "/views/header.blade.php"); ?>
     <div class="container">
+        <?php if(isset($mensaje)){ ?>
+            <div class="alert alert-success mensaje-timeout"><?=$mensaje;?></div>
+        <?php } ?>
         <div class="well">
             Lista de Alumnos
             <div class="row">

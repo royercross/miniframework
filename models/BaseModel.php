@@ -4,6 +4,8 @@ class BaseModel{
 
 	protected $table;
 	protected $fields;
+	protected $custom_fields;
+
 	public $data = array();
 	public $errors;
 
@@ -15,8 +17,11 @@ class BaseModel{
 	}
 
 	public function setData($data){
+
+		$data = $this->prepareData($data);
+
 		foreach($data as $key => $value){
-			if($key == "id" || array_key_exists($key, $this->fields)){
+			if($key == "id" || array_key_exists($key, $this->fields) || in_array($key, $this->custom_fields)){
 				//$this->data[$key] = $value;
 				$this->$key = $value;
 			}
@@ -73,8 +78,12 @@ class BaseModel{
 
 	}
 
-	public function delete($id){
+	public function delete(){
+		$mysql = new DBMannager();
+		$mysql->connect();	
 
+		$query="DELETE FROM ".$this->table." WHERE id=?";
+		$mysql->execute($query,array($this->id));				
 	}
 	
 

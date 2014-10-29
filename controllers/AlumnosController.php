@@ -42,10 +42,10 @@ class AlumnosController{
 		$repo = new AlumnosRepo();
 		$alumno = $repo->find($id);
 
-		var_dump($alumno);
-
-
-		echo "eliminar: ".$alumno['id'];
+		$alumno->delete();		
+		$alumnos = $repo->alumnos();		
+		$mensaje="El alumno se ha eliminado correctamente.";
+		view('alumnos/lista',compact('alumnos','mensaje'));
 	}
 }
 

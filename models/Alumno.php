@@ -11,6 +11,15 @@ class Alumno extends BaseModel{
 		'apellido_paterno'  => 'required',
 		'apellido_materno'  => '',
 		'fecha_nacimiento'  => '',
+	);	
+
+	protected $custom_fields = array(
+		'nombre_completo',
 	);
+
+	public function prepareData($data){
+		$data['nombre_completo'] = $data['nombre']." ".$data['apellido_paterno']." ".$data['apellido_materno'];
+		return $data;
+	}
 	
 }

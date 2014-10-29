@@ -29,37 +29,9 @@ function getPublic(){
 function view($template, $vars = array())
 {
 	extract($vars);
+	header("Location: ")	
 	require ROOT."/views/".$template.".blade.php";
 }
-
-function controller($name)
-{
-	if(empty($name))
-	{
-		$name = 'Home';
-	}else{
-		$name = ucfirst($name);
-	}
-
-	$className = $name."Controller";
-
-	$file = ROOT."/controllers/".$className.".php";	
-	
-	if(file_exists($file)){
-
-		require $file;
-	
-		$controller = new $className();
-
-		call_user_func(array($controller, "index"));
-
-	}else{
-		header("HTTP/1.0 404 Not Found");
-		exit("Pagina no Encontrada");
-	}
-
-}
-
 
 
 
