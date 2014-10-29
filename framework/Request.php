@@ -55,6 +55,8 @@ class Request{
 		
 		if(file_exists($file)){
 
+			session_start();
+
 			require $file;
 		
 			$controller = new $className();

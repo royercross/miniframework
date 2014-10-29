@@ -12,7 +12,7 @@ class AlumnosController{
 
 	function lista(){		
 		$repo = new AlumnosRepo();
-		$alumnos = $repo->alumnos();		
+		$alumnos = $repo->alumnos();
 		view('alumnos/lista',compact('alumnos'));
 	}
 
@@ -26,27 +26,24 @@ class AlumnosController{
 		$alumno->setData($_POST);
 
 		if($alumno->save()){
-			$mensaje="El alumno se agrego correctamente.";
-			view('alumnos/agregar',compact('mensaje'));
+			setSession('mensaje',"El alumno se agrego correctamente.");
+			redirect('alumnos/agregar');
 		}else{		
 			$errors = $alumno->errors;	
-			view('alumnos/agregar',compact('errors'));
+			setSession('errores', $errors);
+			redirect('alumnos/agregar');
+			//view('alumnos/agregar',compact('errors'));
 		}
-		
-
-		//var_dump($_POST);
-	}
+	}	
 
 	function eliminar($id){
 
 		$repo = new AlumnosRepo();
 		$alumno = $repo->find($id);
 
-		$alumno->delete();	
-			
-		$alumnos = $repo->alumnos();		
-		$mensaje="El alumno se ha eliminado correctamente.";
-		view('alumnos/lista',compact('alumnos','mensaje'));
+		//$alumno->delete();			
+		setSession('mensaje',"El alumno se ha eliminado correctamente.");
+		redirect('alumnos/lista');
 	}
 }
 

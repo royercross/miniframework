@@ -1,10 +1,10 @@
-<?php include(ROOT . "/views/header.blade.php"); ?>
+<?php include(ROOT . "/views/header.blade.php");?>
     <div class="container">
-        <?php if(isset($mensaje)){ ?>
-            <div class="alert alert-success mensaje-timeout"><?=$mensaje;?></div>
+        <?php if(getSession('mensaje')){ ?>
+            <div class="alert alert-success mensaje-timeout"><?=getAndRemoveSession('mensaje');?></div>
         <?php } ?>
         <div class="well">
-            Lista de Alumnos
+            Lista de Alumnos            
             <div class="row">
                 <div class="col-md-8">
                     <p>

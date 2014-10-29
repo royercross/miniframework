@@ -1,9 +1,12 @@
 <?php include(ROOT . "/views/header.blade.php"); ?>
     <div class="container">
-    	<?php if(isset($mensaje)){ ?>
-    		<div class="alert alert-success mensaje-timeout"><?=$mensaje;?></div>
+    	<?php if(getSession('mensaje')){ ?>
+    		<div class="alert alert-success mensaje-timeout"><?=getAndRemoveSession('mensaje');?></div>
     	<?php } ?>
-    	<?php if(isset($errors)){ ?>
+    	<?php 
+        if(getSession('errores')){
+          $errors = getAndRemoveSession('errores');
+      ?>
     		<div class="alert alert-danger">
     			<?php foreach($errors as $error){ ?>
     				<p><?=$error;?></p> 
