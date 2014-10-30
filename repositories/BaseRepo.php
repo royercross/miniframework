@@ -14,7 +14,7 @@ abstract class BaseRepo{
         $mysql = new DBMannager();
         $mysql->connect();
 
-        $query="SELECT * FROM alumnos WHERE id=?";
+        $query="SELECT * FROM ".$this->model->table." WHERE id=?";
         $mysql->execute($query,array($id));
 
         if($mysql->count() < 1){
@@ -31,6 +31,7 @@ abstract class BaseRepo{
         $model = $this->model;
         for($i = 0; $i < count($sqldata); $i++){
             $obj = new $model($sqldata[$i]);
+            $obj->isNew = false;
             array_push($array, $obj);                        
         }
         return $array;

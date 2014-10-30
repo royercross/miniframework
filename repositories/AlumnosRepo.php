@@ -5,7 +5,7 @@ include("BaseRepo.php");
 class AlumnosRepo extends BaseRepo{
 
     function getModel(){
-        return "Alumno";
+        return new Alumno();
     }    
 
 	function alumnos(){

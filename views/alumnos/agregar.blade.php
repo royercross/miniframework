@@ -14,14 +14,19 @@
     		</div>
     	<?php } ?>
         <div class="well">
-            <form role="form" method="post" action="<?=getPublic();?>/alumnos/guardar">                
-              <?php field('text','nombre'); ?>              
-              <?php field('text','apellido_paterno'); ?>              
-              <?php field('text','apellido_materno'); ?>              
-              <?php field('text','fecha_nacimiento'); ?>           
-
+            <?php
+              if(isset($alumno)){
+                Form::open("post",getPublic()."/alumnos/actualizar",$alumno);   
+              }else{
+                Form::open("post",getPublic()."/alumnos/guardar");   
+              }              
+            ?>
+              <?php Form::field('text','nombre'); ?>              
+              <?php Form::field('text','apellido_paterno'); ?>              
+              <?php Form::field('text','apellido_materno'); ?>              
+              <?php Form::field('text','fecha_nacimiento'); ?>           
               <button type="submit" class="btn btn-default">Guardar</button>
-            </form>
+            <?php Form::close(); ?>
         </div>
     </div>
 <?php include( ROOT . "/views/footer.blade.php"); ?>

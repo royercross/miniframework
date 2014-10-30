@@ -4,7 +4,7 @@ require_once("BaseModel.php");
 
 class Alumno extends BaseModel{
 
-	protected $table = "alumnos";
+	public $table = "alumnos";
 
 	protected $fields = array(
 		'nombre' 			=> 'required',

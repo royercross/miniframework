@@ -2,10 +2,10 @@
 
 class BaseModel{
 
-	protected $table;
+	public $table;
 	protected $fields;
 	protected $custom_fields;
-
+	public $isNew=true;
 	public $data = array();
 	public $errors;
 
@@ -48,7 +48,11 @@ class BaseModel{
 
 	public function save(){
 		if($this->isValid()){
-			$this->insert();
+			if($this->isNew){
+				$this->insert();	
+			}else{
+				$this->update();
+			}			
 			return true;
 		}else{
 			return false;
@@ -76,6 +80,27 @@ class BaseModel{
 		$mysql->execute($query,$array_values);
 
 	}
+
+	public function update(){		
+
+		$mysql = new DBMannager();
+		$mysql->connect();		
+
+		$query_fields = implode(",",array_keys($this->fields));
+
+		$array_values = array();
+		$query_values = array();
+		foreach($this->fields as $key=>$value){			
+			array_push($array_values, $this->$key);
+			array_push($query_values, $key.'=?');
+		}		
+		array_push($array_values, $this->id);
+
+		$query_values = implode(",",$query_values);			
+		$query="UPDATE ".$this->table." SET ".$query_values." WHERE id=?";
+		$mysql->execute($query,$array_values);
+
+	}	
 
 	public function delete(){
 		$mysql = new DBMannager();

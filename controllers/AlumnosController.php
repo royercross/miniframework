@@ -36,12 +36,36 @@ class AlumnosController{
 		}
 	}	
 
+	function modificar($id){
+		$repo = new AlumnosRepo();
+		$alumno = $repo->find($id);
+
+		view('alumnos/agregar',compact('alumno')); 
+	}
+
+	function actualizar($id){
+		$repo = new AlumnosRepo();
+		$alumno = $repo->find($id);		
+		$alumno->setData($_POST);
+
+		if($alumno->save()){
+			setSession('mensaje',"El alumno se actualizado correctamente.");
+			redirect('alumnos/modificar/'.$id);
+		}else{		
+			$errors = $alumno->errors;	
+			setSession('errores', $errors);
+			redirect('alumnos/modificar/'.$id);
+			//view('alumnos/agregar',compact('errors'));
+		}
+
+	}
+
 	function eliminar($id){
 
 		$repo = new AlumnosRepo();
 		$alumno = $repo->find($id);
 
-		//$alumno->delete();			
+		$alumno->delete();			
 		setSession('mensaje',"El alumno se ha eliminado correctamente.");
 		redirect('alumnos/lista');
 	}
