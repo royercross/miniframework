@@ -22,8 +22,8 @@ abstract class BaseRepo{
         }
 
         $result = $mysql->getArray();
-
-        return array_shift($this->arrayModel($result));
+        $modelResult = $this->arrayModel($result);
+        return array_shift($modelResult);
     }
 
     function getList($key, $name){
