@@ -2,22 +2,24 @@
 
 include("BaseRepo.php");
 
-class AlumnosRepo extends BaseRepo{
+class CarrerasRepo extends BaseRepo{
 
     function getModel(){
-        return new Alumno();
+        return new Carrera();
     }    
 
-	function alumnos(){
+	function carreras(){
 		$mysql = new DBMannager();
 		$mysql->connect();
 
-		$mysql->execute("SELECT * FROM alumnos");
+		$mysql->execute("SELECT * FROM carreras");
 		$result = $mysql->getArray();
 
         return $this->arrayModel($result);
 	}
 
-	
+	function lista(){
+		return $this->getList('id','carrera');
+	}
 
 }

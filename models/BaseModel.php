@@ -4,7 +4,7 @@ class BaseModel{
 
 	public $table;
 	protected $fields;
-	protected $custom_fields;
+	protected $custom_fields=array();
 	public $isNew=true;
 	public $data = array();
 	public $errors;
@@ -32,9 +32,9 @@ class BaseModel{
 	}
 
 	public function isValid(){
-		$this->errors = array();
-		foreach($this->fields as $key=>$value){			
-			//if($value == 'required' && empty($this->data[$key])){
+			$this->errors = array();
+			foreach($this->fields as $key=>$value){			
+				//if($value == 'required' && empty($this->data[$key])){
 			if($value == 'required' && empty($this->$key)){
 				array_push($this->errors, 'El campo '.$key.' es requerido.');
 			}

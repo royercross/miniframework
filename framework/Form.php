@@ -19,7 +19,7 @@ class Form{
 		}
 	}
 
-	public static function field($tipo,$campo){
+	public static function field($tipo,$campo,$valor=NULL,$opciones=NULL){
 
 		//$campo="apellido_paterno";
 		$texto = explode("_",$campo);
@@ -38,12 +38,15 @@ class Form{
 		if(isset(self::$model->$campo)){
 			$value = self::$model->$campo;
 		}
-
-		if($tipo=='text'){
-			view('fields/text',compact('campo','texto','value'));
-		}else{
-			return "Error";
+		switch($tipo){
+			case 'text': view('fields/text',compact('campo','texto','value'));
+						break;
+			case 'select': view('fields/select',compact('campo','texto','value','opciones'));
+						break;
+			default: 
+				return "Error";
 		}
+		
 	}
 
 }
