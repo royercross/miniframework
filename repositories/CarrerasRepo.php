@@ -1,6 +1,7 @@
 <?php
 
-include("BaseRepo.php");
+require_once("BaseRepo.php");
+
 
 class CarrerasRepo extends BaseRepo{
 

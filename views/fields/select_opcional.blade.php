@@ -1,6 +1,7 @@
 <div class="form-group">
   <label for="<?=$campo;?>"><?=$texto;?></label>
   <select name="<?=$campo;?>" class="form-control">
+    <option value="">Selecciona</option>
   	<?php 
   		foreach($opciones as $key=>$val){ 
   			$selected="";

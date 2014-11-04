@@ -2,7 +2,9 @@
 //CONSULTA A LA BASE DE DATOS
 
 include ROOT . "/models/Alumno.php";
+include ROOT . "/models/Carrera.php";
 include ROOT . "/repositories/AlumnosRepo.php";
+include ROOT . "/repositories/CarrerasRepo.php";
 
 class AlumnosController{
 
@@ -17,7 +19,9 @@ class AlumnosController{
 	}
 
 	function agregar(){
-		view('alumnos/agregar');
+		$repo = new CarrerasRepo();
+		$carreras = $repo->lista();
+		view('alumnos/agregar', compact('carreras'));
 	}
 
 	function guardar(){		
@@ -39,8 +43,9 @@ class AlumnosController{
 	function modificar($id){
 		$repo = new AlumnosRepo();
 		$alumno = $repo->find($id);
-
-		view('alumnos/agregar',compact('alumno')); 
+		$repoCarrera = new CarrerasRepo();
+		$carreras = $repoCarrera->lista();
+		view('alumnos/agregar',compact('alumno','carreras')); 
 	}
 
 	function actualizar($id){

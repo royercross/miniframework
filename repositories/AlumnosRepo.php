@@ -1,6 +1,6 @@
 <?php
 
-include("BaseRepo.php");
+require_once("BaseRepo.php");
 
 class AlumnosRepo extends BaseRepo{
 

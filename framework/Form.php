@@ -43,6 +43,8 @@ class Form{
 						break;
 			case 'select': view('fields/select',compact('campo','texto','value','opciones'));
 						break;
+			case 'select-opcional': view('fields/select_opcional',compact('campo','texto','value','opciones'));
+						break;						
 			default: 
 				return "Error";
 		}

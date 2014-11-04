@@ -10,6 +10,7 @@ class Alumno extends BaseModel{
 		'nombre' 			=> 'required',
 		'apellido_paterno'  => 'required',
 		'apellido_materno'  => '',
+		'carreras_id'		=> 'required',
 		'fecha_nacimiento'  => '',
 	);	
 

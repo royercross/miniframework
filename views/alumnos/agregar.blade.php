@@ -21,6 +21,7 @@
                 Form::open("post",getPublic()."/alumnos/guardar");   
               }              
             ?>
+              <?php Form::field('select-opcional','carreras_id',NULL,$carreras); ?>              
               <?php Form::field('text','nombre'); ?>              
               <?php Form::field('text','apellido_paterno'); ?>              
               <?php Form::field('text','apellido_materno'); ?>              
