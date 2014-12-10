@@ -11,14 +11,14 @@
                     <div class="publicar">
                         <p>Realizar una publicación</p>
                         <div class="row">
-                            <div class="column col-md-9">
-                                <form action="<?=getPublic();?>/usuarios/publicar" method="post">
-                                    <input name="mensaje" class="form-control" type="text" placeholder="¿En que estas pensando?">
-                                </form>
+                            <form action="<?=getPublic();?>/usuarios/publicar" method="post">
+                            <div class="column col-md-9">                                
+                                    <input name="mensaje" class="form-control" type="text" placeholder="¿En que estas pensando?">                                
                             </div>
                             <div class="column col-md-3">
-                                <button class="btn btn-primary">Publicar</button>
+                                <input type="submit" class="btn btn-primary" value="Publicar" />
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
