@@ -1,0 +1,27 @@
+/*** CSS de navigatio **/
+
+.menu-perfil img{
+	width: 20px;
+}
+
+
+/**** CSS de Publicaciones **/
+.publicacion .imagen-perfil-muro{
+	width: 50px;
+}
+
+.publicacion .nombre-usuario{
+	font-size: 16px;
+	font-weight: bold;
+	display: block;
+}
+
+.publicacion .fecha-publicacion{
+	font-size: 12px;
+	display: block;
+	margin-top: 7px;
+}
+
+.publicacion .comentario{
+	padding: 10px 15px;
+}

@@ -14,11 +14,26 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <?php if(getSession('id')){ ?>
+                        <li class="menu-perfil">
+                            <a href="#"><img src="<?=getPublic();?>/uploads/<?=getSession('id');?>/perfil.jpg" alt=""> <?=getSession('nombre');?></a>
+                        </li>
+                    <?php } ?>
+                    <?php if(getSession('id')){ ?>
+                        <li>
+                            <a href="<?=getPublic();?>/usuarios/logout">logout</a>                        
+                        </li>
+                    <?php }else{ ?>
+                        <li>
+                            <a href="<?=getPublic();?>/usuarios/login">Login</a>                        
+                        </li>
+                    <?php } ?>
+                    <?php if(getSession('id')){ ?>
                     <li>
-                        <a href="<?=getPublic();?>/usuarios/login">Login</a>
+                        <a href="<?=getPublic();?>/usuarios/muro">Muro</a>
                     </li>
-                    <li>
-                        <a href="<?=getPublic();?>/muro">Muro</a>
+                    <?php } ?>                        
+                    <li>                        
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Carreras<b class="caret"></b></a>

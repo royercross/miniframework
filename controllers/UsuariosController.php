@@ -2,7 +2,9 @@
 //CONSULTA A LA BASE DE DATOS
 
 include ROOT . "/models/Usuario.php";
+include ROOT . "/models/Publicacion.php";
 include ROOT . "/repositories/UsuariosRepo.php";
+include ROOT . "/repositories/PublicacionesRepo.php";
 
 class UsuariosController{
 
@@ -25,8 +27,30 @@ class UsuariosController{
 		}
 	}
 
+	public function logout(){
+		session_destroy();
+		redirect('');
+	}
+
 	public function muro(){
-		view('muro');
+
+		$repo = new PublicacionesRepo();
+		$publicaciones = $repo->publicaciones();
+
+		view('muro',compact('publicaciones'));
+	}
+
+	public function publicar(){
+		$publicacion = new Publicacion();
+		$publicacion->setData($_POST);
+
+		if($publicacion->save()){
+			setSession('mensaje',"Tu publicacion se ha agregado correctamente.");
+			redirect('usuarios/muro');
+		}else{
+			$errors = array("Ocurrio un error, intenta de nuevo.");
+			redirect('usuarios/muro');
+		}
 	}
 	
 }

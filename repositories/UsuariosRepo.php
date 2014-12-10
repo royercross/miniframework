@@ -13,11 +13,14 @@ class UsuariosRepo extends BaseRepo{
     	$mysql = new DBMannager();
     	$mysql->connect();
 
-    	$query="SELECT 1 FROM usuarios WHERe correo=? AND password=?";
+    	$query="SELECT id,nombre FROM usuarios WHERe correo=? AND password=?";
 
     	$mysql->execute($query, array($correo , $password));
 
     	if($mysql->count() > 0){
+    		$row = $mysql->getRow();
+    		setSession('id',$row['id']);
+    		setSession('nombre',$row['nombre']);
     		return true;
     	}else{
     		return false;

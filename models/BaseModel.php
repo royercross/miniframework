@@ -70,8 +70,12 @@ class BaseModel{
 		$array_values = array();
 		$query_values = array();
 		foreach($this->fields as $key=>$value){			
-			//array_push($array_values, $this->data[$key]);
-			array_push($array_values, $this->$key);
+			if(isset($this->$key)){
+				array_push($array_values, $this->$key );	
+			}else{
+				array_push($array_values, NULL );
+			}
+			
 			array_push($query_values, '?');
 		}		
 		
