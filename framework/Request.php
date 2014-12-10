@@ -14,8 +14,7 @@ class Request{
 
 		//personas/editar/1
 
-		$segmentos = explode("/",$this->url);
-
+		$segmentos = explode("/",$this->url);		
 		$this->resolveController($segmentos);		
 		$this->resolveAction($segmentos);		
 		$this->resolveParameters($segmentos);		

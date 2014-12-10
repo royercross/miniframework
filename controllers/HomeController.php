@@ -8,7 +8,6 @@ class HomeController{
 	}
 
 	function index(){
-
 		view('home');
 	}
 }
