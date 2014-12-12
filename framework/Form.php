@@ -12,6 +12,14 @@ class Form{
 		echo "<form role='form' method='$method' action='$action'>";
 	}
 
+	public static function openForFileUpload($method,$action,$model=NULL){
+		if(isset($model)){
+			self::$model = $model;
+			$action .= "/".$model->id;	
+		} 
+		echo "<form role='form' method='$method' action='$action' enctype='multipart/form-data'>";
+	}
+
 	public static function close(){		
 		echo "<form>";
 		if(isset($model)){
@@ -38,13 +46,16 @@ class Form{
 		if(isset(self::$model->$campo)){
 			$value = self::$model->$campo;
 		}
+
 		switch($tipo){
 			case 'text': view('fields/text',compact('campo','texto','value'));
 						break;
 			case 'select': view('fields/select',compact('campo','texto','value','opciones'));
 						break;
 			case 'select-opcional': view('fields/select_opcional',compact('campo','texto','value','opciones'));
-						break;						
+						break;
+			case 'upload': view('fields/upload',compact('campo','texto','value'));
+						break;												
 			default: 
 				return "Error";
 		}

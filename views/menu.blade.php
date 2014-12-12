@@ -16,22 +16,20 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php if(getSession('id')){ ?>
                         <li class="menu-perfil">
-                            <a href="#"><img src="<?=getPublic();?>/uploads/<?=getSession('id');?>/perfil.jpg" alt=""> <?=getSession('nombre');?></a>
-                        </li>
-                    <?php } ?>
-                    <?php if(getSession('id')){ ?>
+                            <a href="<?=getPublic();?>/usuarios/perfil"><img src="<?=getPublic();?>/uploads/<?=getSession('id');?>/perfil.jpg" alt=""><?=getSession('nombre');?></a>
+                        </li>                    
                         <li>
                             <a href="<?=getPublic();?>/usuarios/logout">logout</a>                        
+                        </li>
+                        <li>
+                            <a href="<?=getPublic();?>/usuarios/muro">Muro</a>
                         </li>
                     <?php }else{ ?>
                         <li>
                             <a href="<?=getPublic();?>/usuarios/login">Login</a>                        
                         </li>
                     <?php } ?>
-                    <?php if(getSession('id')){ ?>
-                    <li>
-                        <a href="<?=getPublic();?>/usuarios/muro">Muro</a>
-                    </li>
+                    <?php if(getSession('id')){ ?>                    
                     <?php } ?>                        
                     <li>                        
                     </li>

@@ -8,7 +8,9 @@ class Usuario extends BaseModel{
 
 	protected $fields = array(
 		'correo' 	=> '',
-		'password'  => '',		
+		'password'  => '',	
+		'nombre'	=> '',
+		'imagen_perfil' => ''
 	);	
 	
 }

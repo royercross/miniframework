@@ -49,3 +49,7 @@ function getAndRemoveSession($varname)
 	return $value;
 }
 
+function getUploadFolder(){
+	return URL . "/uploads/".getSession('id');
+}
+

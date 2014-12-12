@@ -52,6 +52,41 @@ class UsuariosController{
 			redirect('usuarios/muro');
 		}
 	}
+
+	public function perfil(){
+		$repo = new UsuariosRepo();
+		$usuario = $repo->find(getSession('id'));
+		//var_dump($usuario);
+		view('perfil',compact('usuario'));
+	}
+
+	public function actualizaPerfil(){
+		$repo = new UsuariosRepo();
+		$usuario = $repo->find(getSession('id'));	
+
+		$usuario->setData($_POST);
+		$archivoCargado=true;
+
+		if(isset($_FILES['imagen_perfil']) && strlen($_FILES['imagen_perfil']['name'])>0){
+			$archivoCargado=$repo->uploadImage($_FILES, 'imagen_perfil','perfil.jpg');	
+		}
+		
+			
+		if($usuario->save() && $archivoCargado === TRUE){
+			setSession('mensaje',"El perfil se actualizado correctamente.");
+			redirect('usuarios/perfil');
+		}else{		
+			$errors = $usuario->errors;	
+			if($archivoCargado !== TRUE){
+				array_push($errors, $archivoCargado);
+			}			
+			
+			setSession('errores', $errors);
+			redirect('usuarios/perfil');
+			//view('alumnos/agregar',compact('errors'));
+		}		
+
+	}
 	
 }
 
